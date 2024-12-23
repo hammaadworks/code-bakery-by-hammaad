@@ -1,0 +1,40 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Execution Context\n\n- Everything in **JavaScript** is executed using an *Execution Context*.\n- **Call Stack** maintains the order of execution of Execution Contexts. \n    - stores and manages the ECs. \n    - the first EC is always Global Execution Context *GEC*. \n    - program ends when GEC is popped.\n- JavaScript is a **synchronous**, **single threaded** language. *Orderly execution of one command at a time*\n\n### Components of Execution Context\n1. Memory Component aka *Variable Environment*\n- Stores Variables and Functions in Key Value Pair. \n\n2. Code Component aka *Thread of Execution*\n- Similar to *Program Counter*\n\n### Phases of Execution Context\n1. Memory Creation Phase\n- Allocate memory to all variables and functions.\n- Initially assigns:\n    - variable: undefined\n    - functions: whole function code\n\n2. Code Execution Phase\n- Executes code synchronously and replaces:\n    - variables: real values\n    - functions: new Execution Context. Pushes into *Call Stack*\n\n#### Hoisting\n- JS scans and stores the variables and functions in *Variable Environment* before *Thread of Execution*.\n- *Anonymous* and *arrow functions* are treated as variables and stored as **undefined** in Variable Environment.\n- *Undefined*: Declared not initialized\n    - Placeholder\n    - takes up some negligible memory\n    - JS is weakly typed language       \n- *Not defined*: Never Declared\n\n### Window\n- shortest code is blank .js file\n- JS Engine (*EG: Chrome v8 Engine*) creates an instance of GEC called *window*.\n- this is a reference to the current window. **this===window**.\n- You can also reference variables/functions of ther EC via *window.a* or *this.a*\n\n### Scope Chain\n- **Scope**: Is variable is accessible in the lexical environment\n- **Lexical Environment**\n    - Lexical Environment of Execution Context is self/this and Lexical Environment of it's Parent\n    - LE = EC + PLE\n    - LE of GEC is this/self + null\n- **Scope Chain** is the chain of Lexical Environments of ECs in the Call Stack.\n\n### Let and Const in JS\n- They are hoisted in the **Temporal Zone** not in *GEC scope* instead they have a **Block Scope**.\n- Not available in **Window / this** GEC instance, it is *undefined*.\n- **Const** is immutable *final*.\n- **Block** is group of statements enclosed in {}.\n- **Shadowing** is naming the var same name as of the PLE.\n- Precedence of least strictness var > const (immutable) = let (mutable).\n- **Illegal Shadowing**\n    - Shadowing of strict variables in previous scope with a less stricter variable declaration.\n    - Shadowing let/const with var. "
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "var a = 10\nlet b = 10\n{\n    var a = 20 // As a is in GEC, it will get updated to 20\n    let b = 20 // As b is in Block Scope, it will not get updated, likewise with const\n}\nconsole.log(a)\nconsole.log(b)\n\n// Illegal Shadowing let > var\nvar x = 10\n{\n    const x = 100\n    console.log(x)\n}\nconsole.log(x)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "20",
+                                "10",
+                                "100",
+                                "10",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        }
+    ]
+}
