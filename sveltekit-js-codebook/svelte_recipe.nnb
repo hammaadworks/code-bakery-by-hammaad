@@ -1,0 +1,25 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Svelte Recipe\n>\n> All essentials and notes to run Svelte and Sveltekit\n>\n> Sources\n> - [Svelte Docs](https://svelte.dev/tutorial/svelte/welcome-to-svelte)\n> - [SvelteKit Docs](https://svelte.dev/tutorial/kit/introducing-sveltekit)\n> -\n> "
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Diary\n\n- New Project\n    - ```npx sv create```\n    - \n\n- Components \n    - Building blocks of Svelte Apps\n    - Written in ```.svelte``` files\n    - Render HTML string using ```{@html string}```\n    - \n\n\n- Dyanmic Attributes\n    - ```{}``` for extrapolation\n    - ```{src}``` is a shorthand for ```src={src}```\n    - \n\n- Importing Components\n    - ```ts\n        <script lang=\"ts\">\n        import Header from './Header.svelte'\n        </script>\n        <Header/>\n        ```\n    - \n\n- Reactivity *Effect + State*\n    1. **$state()**: making variables reactive\n        - *Rune* looks for state change in variable and reacts to:\n            1. Reassignments: ```let count = $state(0)```\n            2. Mutations (Deep Reactivity): ```let numbers = $state([1,2,3,4])```\n                - Implemented using **Proxies**.\n                - Use ```$inspect``` to console.log Runes as it will get stripped out of production builds.\n                - \n    2. **$derived()**: reactive variable derived from reactive variable \n    3. **$props()**: customise your components\n        - They pass and recieve objects.\n        - You can also use spread operator as argument ```<Nested {...arg_object}/>``` \n        - Component.svelte\n            ```ts\n            <script>\n            let { answer = 99 } = $props();\n            </script>\n            ```\n        - App.svelte\n            ```ts\n            <script>\n            import Nested from './Nested.svelte';\n            </script>\n            <Nested {'alhamdulillah'} />\n            ```\n    4. \n\n- Logic\n    - ```md\n        1. ```{#}``` - Opens a block\n        2. ```{:}``` - Continues a block\n        3. ```{/}``` - Closes a block\n        ```\n    1. **if-else ladder**\n        - Syntax\n            ```ts\n            {#if condition}\n                // html code\n            {:else if}\n                //html code\n            {:else}\n                //html code\n            {/if}\n            ```\n        - \n    2. **for-each loop**\n        - Flipped from Python. It uses as\n            - *Python* = ```for a in arr```\n            - *Svelte* = ```{#each arr as a}...{/each}```\n        - Syntax\n            ```ts\n            {#each arr as a, index (a.id)}\n            {/each}\n            ```\n        - **Keying**\n            - Use *keyed each loop* if there are **mutations** in the logic of each block. \n            - You can also used ```$derived``` as a work around but *keying* is effecient ```{#each arr as a (a.id)}...{/each}```\n            - "
+            ],
+            "outputs": []
+        },
+        {
+            "language": "html",
+            "source": [
+                "<!-- \n1. Use {} to extrapolate JS into HTML\n2. Anything within {} is JS\n-->\n<script lang=\"ts\">\n    let name = \"Hammaad\"\n</script>\n\n<h1>Alhamdulillah {name.toCa}</h1>"
+            ],
+            "outputs": []
+        }
+    ]
+}

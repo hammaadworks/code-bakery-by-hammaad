@@ -30,11 +30,36 @@
             ]
         },
         {
-            "language": "typescript",
+            "language": "markdown",
             "source": [
-                ""
+                "# Closures\n- A **function bundled with it's lexical environment** (parents lexical scope).\n- It can access it's parents variables. \n- If we return the inner function then **magically** we can use inner function anywhere in our code outside of it's intended scope. *Inner Function* **remembers** it's lexical scope.\n- Variables used by a closure don't get *Garbage Collected*. In multi-level closures, the innermost closure can reference variables in the outermost scope.\n\n## Uses : Making Functions Remember Something Out of it's Scope\n- Data Hiding and Encapsulation\n- setTimeouts\n- currying\n- maintain state in Async mode\n- once, memoize and more.\n\n# setTimeout\n>> setTimeout(callback_function, time_interval)\n\n- Syntax: ```setTimeout(function(){console.log(\"alhamdulillah\")}, 1000)```\n- The function inside forms a *Closure*. Waits for certain time interval, then executes the function.\n- "
             ],
             "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// Closures\nfunction outer() {\n  let outer_var = 10;\n  function inner() {\n    console.log(outer_var);\n  }\n  inner();\n}\n\nouter();\n\n// Closures - returning function\n// inner still remembers *a*, though outer has finished execution\nfunction outer() {\n  let outer_var = 10;\n  return function inner() {\n    console.log(outer_var);\n  };\n}\n\nouter()();\n\n// Crazy Closure ft. setTimeout\n// setTimeout remembers the reference to i variable\n// Solution: use *let* as it is block scoped.\nfunction crazy_closure(m: int) {\n  for (var i = 1; i <= m; i++) {\n    setTimeout(function () {\n      console.log(i);\n    }, i * 1000);\n  }\n  console.log(\"Done\");\n}\ncrazy_closure('5');\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "10",
+                                "Done",
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
