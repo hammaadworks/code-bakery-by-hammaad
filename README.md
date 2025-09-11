@@ -1,6 +1,8 @@
-Me: Yo! I'll tell you a joke on construction
-You: Yeah, go on!
-Me: It's still under development 🤣😂
+**Me**: Yo! I'll tell you a joke on construction
+
+_**You**: Yeah, go on!_
+
+**Me**: It's still under development 🤣😂
 
 **Keep that smile and stay happy 😄👷‍♂️**
 
