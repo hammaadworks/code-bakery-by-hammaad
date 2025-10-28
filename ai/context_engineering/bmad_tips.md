@@ -26,8 +26,14 @@ dev -> implement
 qa -> trace, review
 ---
 
-7. Please always verify all changes after any agent, completes a step be it story, code, review, etc. You are just a human in the loop and AI is still needs your supervision, you might want to do some silly tweaks such as downloading a new library or tweaking some design/document changes, just small changes here in there, which AI might have missed and might save you circles and hours of debugging, especially designed docs and minor code/devops tweaks.
+7. Please always verify all changes after any agent, completes a step be it story, code, review, etc. You are just a human in the loop and AI is still needs your supervision, you might want to do some silly tweaks such as downloading a new library or tweaking some design/document changes, just small changes here in there, which AI might have missed and might save you circles and hours of debugging, especially designed docs and minor code/devops tweaks. or do tasks that might require manual intervention like making supabase changes, etc.
 
 8. Especially while working with cli or tui, I strongly recommend you make a git ignored file where you maintain a chat history easier to copy paste, edit, all while using TTS. cause sometimes the cli might not be responsive and you might miss a track of necessary chats you had in the session. Useful when you generally are dealing with a repeatable sequence.
 
 9. Story creation and development might not be in a sequential order. Sometimes while course correcting, you might not execute stories in same order, rather, you might want to execute a new story out of the order to facilitated changes and meet requirements of previous stories, and then come back to execute the previous ones. That's why we highly recommend to use `sm` for `next-story` creation and go incremental story wise.
+
+10. Highly recommend you to add library documentation help to dev agent so that it can refer and code appropriately to the latest documentations available. You can do that by adding a new modded dev agent 
+
+```
+<<attach the sample snippet here>>
+```
