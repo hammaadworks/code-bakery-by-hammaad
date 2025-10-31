@@ -37,3 +37,15 @@ qa -> trace, review
 ```
 <<attach the sample snippet here>>
 ```
+
+11. also while working with gemini-cli, long tasks like playwright must be killed manually by `npx kill-port 9323`. especially for `playwright` use
+
+```ts
+export default defineConfig({
+  ...
+  reporter: [['html', { open: 'never' }]],
+  ...
+})
+```
+
+12.
